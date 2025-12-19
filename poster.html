@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqua Arcade - Game Poster</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a2e;
+            padding: 20px;
+        }
+
+        .poster {
+            width: 1200px;
+            height: 675px;
+            background: linear-gradient(180deg, #4A90E2 0%, #5BA3E8 50%, #6BB6FF 100%);
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #8B4513;
+            box-shadow: 
+                0 0 0 4px #C0C0C0,
+                0 20px 60px rgba(0,0,0,0.5),
+                inset 0 0 100px rgba(0,0,0,0.2);
+        }
+
+        /* Light rays */
+        .light-ray {
+            position: absolute;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(255,255,255,0.3) 0%, 
+                rgba(255,255,255,0) 100%);
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        .light-ray:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .light-ray:nth-child(2) { left: 30%; animation-delay: 1s; }
+        .light-ray:nth-child(3) { left: 50%; animation-delay: 2s; }
+        .light-ray:nth-child(4) { left: 70%; animation-delay: 1.5s; }
+        .light-ray:nth-child(5) { left: 90%; animation-delay: 0.5s; }
+
+        @keyframes sway {
+            0%, 100% { transform: translateX(0px); }
+            50% { transform: translateX(20px); }
+        }
+
+        /* Bubbles */
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(255,255,255,0.8), 
+                rgba(255,255,255,0.3));
+            border-radius: 50%;
+            animation: rise linear infinite;
+        }
+
+        @keyframes rise {
+            to {
+                bottom: 120%;
+                transform: translateX(50px);
+            }
+        }
+
+        /* Ocean floor */
+        .ocean-floor {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(180deg, 
+                rgba(194,178,128,0) 0%,
+                #C2B280 30%,
+                #D4C5A9 70%,
+                #E6D7B8 100%);
+        }
+
+        /* Seaweed */
+        .seaweed {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            height: 100px;
+            background: linear-gradient(180deg, #2D5016, #3D6B1F);
+            border-radius: 10px;
+            animation: seaweed-sway 3s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+
+        @keyframes seaweed-sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Fish */
+        .fish {
+            position: absolute;
+            animation: swim 8s linear infinite;
+        }
+
+        @keyframes swim {
+            0% { left: -100px; }
+            100% { left: 110%; }
+        }
+
+        /* Title */
+        .title-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .title {
+            font-size: 120px;
+            font-weight: bold;
+            color: #00FFFF;
+            text-shadow: 
+                0 0 20px #00FFFF,
+                0 0 40px #00FFFF,
+                0 0 60px #00FFFF,
+                4px 4px 0 #0088AA,
+                8px 8px 0 #006688,
+                -2px -2px 0 #00DDFF;
+            letter-spacing: 8px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 
+                0 0 20px #00FFFF,
+                0 0 40px #00FFFF,
+                0 0 60px #00FFFF,
+                4px 4px 0 #0088AA,
+                8px 8px 0 #006688; }
+            50% { text-shadow: 
+                0 0 30px #00FFFF,
+                0 0 60px #00FFFF,
+                0 0 90px #00FFFF,
+                4px 4px 0 #0088AA,
+                8px 8px 0 #006688; }
+        }
+
+        .subtitle {
+            font-size: 32px;
+            color: #FFD700;
+            text-shadow: 
+                0 0 10px #FFD700,
+                2px 2px 0 #AA8800,
+                -1px -1px 0 #FFEE00;
+            margin-top: 20px;
+            letter-spacing: 4px;
+        }
+
+        .tagline {
+            font-size: 24px;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-top: 15px;
+        }
+
+        /* Kiro Logo */
+        .kiro-logo {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            background: rgba(0,0,0,0.7);
+            padding: 15px 30px;
+            border-radius: 10px;
+            border: 3px solid #00FFFF;
+            box-shadow: 0 0 20px rgba(0,255,255,0.5);
+        }
+
+        .kiro-logo-text {
+            font-size: 36px;
+            font-weight: bold;
+            color: #00FFFF;
+            text-shadow: 0 0 10px #00FFFF;
+            letter-spacing: 4px;
+        }
+
+        .kiro-subtitle {
+            font-size: 14px;
+            color: #FFFFFF;
+            text-align: center;
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        /* Game URL */
+        .game-url {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            background: rgba(0,0,0,0.8);
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: 2px solid #FFD700;
+        }
+
+        .game-url-text {
+            font-size: 18px;
+            color: #FFD700;
+            text-shadow: 0 0 5px #FFD700;
+        }
+
+        /* Features */
+        .features {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            background: rgba(0,0,0,0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #00FF00;
+        }
+
+        .feature-item {
+            font-size: 16px;
+            color: #00FF00;
+            margin: 5px 0;
+            text-shadow: 0 0 5px #00FF00;
+        }
+
+        /* CRT Effect */
+        .crt-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0,0,0,0.15) 0px,
+                rgba(0,0,0,0.15) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* Decorative elements */
+        .treasure {
+            position: absolute;
+            bottom: 120px;
+            left: 100px;
+            font-size: 40px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .shark {
+            position: absolute;
+            top: 150px;
+            right: 150px;
+            font-size: 50px;
+            animation: shark-swim 6s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
+        }
+
+        @keyframes shark-swim {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(-30px) translateY(20px); }
+        }
+
+        .mermaid {
+            position: absolute;
+            bottom: 140px;
+            right: 200px;
+            font-size: 45px;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <!-- Light rays -->
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+        <div class="light-ray"></div>
+
+        <!-- Ocean floor -->
+        <div class="ocean-floor"></div>
+
+        <!-- Seaweed -->
+        <div class="seaweed" style="left: 50px; animation-delay: 0s;"></div>
+        <div class="seaweed" style="left: 150px; height: 80px; animation-delay: 0.5s;"></div>
+        <div class="seaweed" style="left: 300px; height: 120px; animation-delay: 1s;"></div>
+        <div class="seaweed" style="right: 300px; height: 90px; animation-delay: 1.5s;"></div>
+        <div class="seaweed" style="right: 150px; animation-delay: 2s;"></div>
+        <div class="seaweed" style="right: 50px; height: 110px; animation-delay: 2.5s;"></div>
+
+        <!-- Decorative elements -->
+        <div class="treasure">💎</div>
+        <div class="shark">🦈</div>
+        <div class="mermaid">🧜‍♀️</div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature-item">⭐ 7 Fish Types</div>
+            <div class="feature-item">💰 Power-Ups</div>
+            <div class="feature-item">🎮 Retro CRT Effects</div>
+            <div class="feature-item">🤖 AI Difficulty</div>
+            <div class="feature-item">🏆 High Scores</div>
+        </div>
+
+        <!-- Title -->
+        <div class="title-container">
+            <div class="title">AQUA ARCADE</div>
+            <div class="subtitle">🐟 RETRO OCEAN ADVENTURE 🐟</div>
+            <div class="tagline">Pop Fish • Avoid Sharks • Collect Treasures</div>
+        </div>
+
+        <!-- Kiro Logo -->
+        <div class="kiro-logo">
+            <div class="kiro-logo-text">KIRO</div>
+            <div class="kiro-subtitle">POWERED BY AI</div>
+        </div>
+
+        <!-- Game URL -->
+        <div class="game-url">
+            <div class="game-url-text">🌐 underwater-fish-game-2024-dec.s3-website-us-east-1.amazonaws.com</div>
+        </div>
+
+        <!-- CRT Overlay -->
+        <div class="crt-overlay"></div>
+    </div>
+
+    <script>
+        // Create animated bubbles
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            const size = Math.random() * 30 + 10;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            bubble.style.animationDelay = Math.random() * 2 + 's';
+            document.querySelector('.poster').appendChild(bubble);
+            
+            setTimeout(() => bubble.remove(), 8000);
+        }
+
+        // Create fish
+        function createFish() {
+            const fish = document.createElement('div');
+            fish.className = 'fish';
+            const fishTypes = ['🐠', '🐟', '🐡', '🦈', '🐙', '🦑', '🐬'];
+            fish.textContent = fishTypes[Math.floor(Math.random() * fishTypes.length)];
+            fish.style.fontSize = (Math.random() * 30 + 30) + 'px';
+            fish.style.top = (Math.random() * 60 + 10) + '%';
+            fish.style.animationDuration = (Math.random() * 5 + 6) + 's';
+            fish.style.animationDelay = Math.random() * 3 + 's';
+            document.querySelector('.poster').appendChild(fish);
+            
+            setTimeout(() => fish.remove(), 12000);
+        }
+
+        // Generate bubbles and fish
+        setInterval(createBubble, 800);
+        setInterval(createFish, 3000);
+
+        // Initial bubbles and fish
+        for(let i = 0; i < 10; i++) {
+            setTimeout(createBubble, i * 200);
+        }
+        for(let i = 0; i < 3; i++) {
+            setTimeout(createFish, i * 1000);
+        }
+    </script>
+</body>
+</html>
